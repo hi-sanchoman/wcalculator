@@ -1,132 +1,1876 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.frontend')
 
-        <title>Laravel</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <!-- Styles -->
-        <style>
-            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-t{border-top-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
-        </style>
+@section('content')
 
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
-        </style>
-    </head>
-    <body class="antialiased">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-            @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+<div class="row">
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
 
-            <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    <svg viewBox="0 0 651 192" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-16 w-auto text-gray-700 sm:h-20">
-                        <g clip-path="url(#clip0)" fill="#EF3B2D">
-                            <path d="M248.032 44.676h-16.466v100.23h47.394v-14.748h-30.928V44.676zM337.091 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.431 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162-.001 2.863-.479 5.584-1.432 8.161zM463.954 87.202c-2.101-3.341-5.083-5.965-8.949-7.875-3.865-1.909-7.756-2.864-11.669-2.864-5.062 0-9.69.931-13.89 2.792-4.201 1.861-7.804 4.417-10.811 7.661-3.007 3.246-5.347 6.993-7.016 11.239-1.672 4.249-2.506 8.713-2.506 13.389 0 4.774.834 9.26 2.506 13.459 1.669 4.202 4.009 7.925 7.016 11.169 3.007 3.246 6.609 5.799 10.811 7.66 4.199 1.861 8.828 2.792 13.89 2.792 3.913 0 7.804-.955 11.669-2.863 3.866-1.908 6.849-4.533 8.949-7.875v9.021h15.607V78.182h-15.607v9.02zm-1.432 32.503c-.955 2.578-2.291 4.821-4.009 6.73-1.719 1.91-3.795 3.437-6.229 4.582-2.435 1.146-5.133 1.718-8.091 1.718-2.96 0-5.633-.572-8.019-1.718-2.387-1.146-4.438-2.672-6.156-4.582-1.719-1.909-3.032-4.152-3.938-6.73-.909-2.577-1.36-5.298-1.36-8.161 0-2.864.451-5.585 1.36-8.162.905-2.577 2.219-4.819 3.938-6.729 1.718-1.908 3.77-3.437 6.156-4.582 2.386-1.146 5.059-1.718 8.019-1.718 2.958 0 5.656.572 8.091 1.718 2.434 1.146 4.51 2.674 6.229 4.582 1.718 1.91 3.054 4.152 4.009 6.729.953 2.577 1.432 5.298 1.432 8.162 0 2.863-.479 5.584-1.432 8.161zM650.772 44.676h-15.606v100.23h15.606V44.676zM365.013 144.906h15.607V93.538h26.776V78.182h-42.383v66.724zM542.133 78.182l-19.616 51.096-19.616-51.096h-15.808l25.617 66.724h19.614l25.617-66.724h-15.808zM591.98 76.466c-19.112 0-34.239 15.706-34.239 35.079 0 21.416 14.641 35.079 36.239 35.079 12.088 0 19.806-4.622 29.234-14.688l-10.544-8.158c-.006.008-7.958 10.449-19.832 10.449-13.802 0-19.612-11.127-19.612-16.884h51.777c2.72-22.043-11.772-40.877-33.023-40.877zm-18.713 29.28c.12-1.284 1.917-16.884 18.589-16.884 16.671 0 18.697 15.598 18.813 16.884h-37.402zM184.068 43.892c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002-35.648-20.524a2.971 2.971 0 00-2.964 0l-35.647 20.522-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v38.979l-29.706 17.103V24.493a3 3 0 00-.103-.776c-.024-.088-.073-.165-.104-.25-.058-.157-.108-.316-.191-.46-.056-.097-.137-.176-.203-.265-.087-.117-.161-.242-.265-.345-.085-.086-.194-.148-.29-.223-.109-.085-.206-.182-.327-.252l-.002-.001-.002-.002L40.098 1.396a2.971 2.971 0 00-2.964 0L1.487 21.919l-.002.002-.002.001c-.121.07-.219.167-.327.252-.096.075-.205.138-.29.223-.103.103-.178.228-.265.345-.066.089-.147.169-.203.265-.083.144-.133.304-.191.46-.031.085-.08.162-.104.25-.067.249-.103.51-.103.776v122.09c0 1.063.568 2.044 1.489 2.575l71.293 41.045c.156.089.324.143.49.202.078.028.15.074.23.095a2.98 2.98 0 001.524 0c.069-.018.132-.059.2-.083.176-.061.354-.119.519-.214l71.293-41.045a2.971 2.971 0 001.489-2.575v-38.979l34.158-19.666a2.971 2.971 0 001.489-2.575V44.666a3.075 3.075 0 00-.106-.774zM74.255 143.167l-29.648-16.779 31.136-17.926.001-.001 34.164-19.669 29.674 17.084-21.772 12.428-43.555 24.863zm68.329-76.259v33.841l-12.475-7.182-17.231-9.92V49.806l12.475 7.182 17.231 9.92zm2.97-39.335l29.693 17.095-29.693 17.095-29.693-17.095 29.693-17.095zM54.06 114.089l-12.475 7.182V46.733l17.231-9.92 12.475-7.182v74.537l-17.231 9.921zM38.614 7.398l29.693 17.095-29.693 17.095L8.921 24.493 38.614 7.398zM5.938 29.632l12.475 7.182 17.231 9.92v79.676l.001.005-.001.006c0 .114.032.221.045.333.017.146.021.294.059.434l.002.007c.032.117.094.222.14.334.051.124.088.255.156.371a.036.036 0 00.004.009c.061.105.149.191.222.288.081.105.149.22.244.314l.008.01c.084.083.19.142.284.215.106.083.202.178.32.247l.013.005.011.008 34.139 19.321v34.175L5.939 144.867V29.632h-.001zm136.646 115.235l-65.352 37.625V148.31l48.399-27.628 16.953-9.677v33.862zm35.646-61.22l-29.706 17.102V66.908l17.231-9.92 12.475-7.182v33.841z"/>
-                        </g>
-                    </svg>
-                </div>
+        <div class="col-md-6 order-md-1 no-print">
+          <h4 class="mb-3">Выберите продукт</h4>
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">Documentation</a></div>
-                            </div>
+              <div class="d-block my-3">
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laracasts.com" class="underline text-gray-900 dark:text-white">Laracasts</a></div>
-                            </div>
+             
+              <div class="custom-control custom-radio">
+                <input id="bochka22" name="product" type="radio" class="custom-control-input js-product" checked="" required="" value="баня-бочка 2.2м с козырьком" data-key="bochka22" data-price="192000" data-type="bochka" data-dlina="2,2" data-razmer="2" data-price-el="192000" data-price-kedr="222400" data-img1="bochka22_1.jpg" data-img2="bochka22_2.jpg"> 
+                <label class="custom-control-label" for="bochka22">баня-бочка 2.2м с козырьком <span class="text-muted">- от 192000 руб.</span></label>
+              </div>
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
-                                </div>
-                            </div>
-                        </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka3" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 3м с козырьком" data-key="bochka3" data-price="245400" data-type="bochka" data-dlina="3" data-razmer="3" data-price-el="245400" data-price-kedr="282500" data-img1="bochka3_1.jpg" data-img2="bochka3_2.jpg"> 
+                <label class="custom-control-label" for="bochka3">баня-бочка 3м с козырьком <span class="text-muted">- от 245400 руб.</span></label>
+              </div>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Laravel News</a></div>
-                            </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka35" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 3.5м с козырьком" data-key="bochka35" data-price="264000" data-type="bochka" data-dlina="3,5" data-razmer="35" data-price-el="264000" data-price-kedr="304000" data-img1="bochka35_1.jpg" data-img2=""> 
+                <label class="custom-control-label" for="bochka35">баня-бочка 3.5м с козырьком <span class="text-muted">- от 264000 руб.</span></label>
+              </div>
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka4" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 4м с козырьком" data-key="bochka4" data-price="314000" data-type="bochka" data-dlina="4" data-razmer="4" data-price-el="314000" data-price-kedr="351800" data-img1="bochka4_1.jpg" data-img2="bochka4_2.jpg"> 
+                <label class="custom-control-label" for="bochka4">баня-бочка 4м с козырьком <span class="text-muted">- от 314000 руб.</span></label>
+              </div>
 
-                        <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-500"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <div class="ml-4 text-lg leading-7 font-semibold text-gray-900 dark:text-white">Vibrant Ecosystem</div>
-                            </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka4k" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 4м с крыльцом 1м" data-key="bochka4k" data-price="339900" data-type="bochka" data-dlina="4" data-razmer="4" data-price-el="339900" data-price-kedr="380600" data-img1="bochka4k_1.jpg" data-img2="bochka4k_2.jpg"> 
+                <label class="custom-control-label" for="bochka4k">баня-бочка 4м с крыльцом 1м <span class="text-muted">- от 339900 руб.</span></label>
+              </div>
 
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline">Forge</a>, <a href="https://vapor.laravel.com" class="underline">Vapor</a>, <a href="https://nova.laravel.com" class="underline">Nova</a>, and <a href="https://envoyer.io" class="underline">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline">Telescope</a>, and more.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka5" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 5м с козырьком" data-key="bochka5" data-price="338600" data-type="bochka" data-dlina="5" data-razmer="5" data-price-el="338600" data-price-kedr="395800" data-img1="bochka5_1.jpg" data-img2="bochka5_2.jpg"> 
+                <label class="custom-control-label" for="bochka5">баня-бочка 5м с козырьком <span class="text-muted">- от 338600 руб.</span></label>
+              </div>
 
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor" class="-mt-px w-5 h-5 text-gray-400">
-                                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka5s" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 5м с козырьком (3 секции)" data-key="bochka5s" data-price="356400" data-type="bochka" data-dlina="5" data-razmer="5" data-price-el="356400" data-price-kedr="415800" data-img1="bochka5s_1.jpg" data-img2=""> 
+                <label class="custom-control-label" for="bochka5s">баня-бочка 5м с козырьком (3 секции) <span class="text-muted">- от 356400 руб.</span></label>
+              </div>
 
-                            <a href="https://laravel.bigcartel.com" class="ml-1 underline">
-                                Shop
-                            </a>
+              
+              <div class="custom-control custom-radio">
+                <input id="bochka6" name="product" type="radio" class="custom-control-input js-product" required="" value="баня-бочка 6м с козырьком" data-key="bochka6" data-price="420500" data-type="bochka" data-dlina="6" data-razmer="6" data-price-el="420500" data-price-kedr="462900" data-img1="bochka6_1.jpg" data-img2="bochka6_2.jpg"> 
+                <label class="custom-control-label" for="bochka6">баня-бочка 6м с козырьком <span class="text-muted">- от 420500 руб.</span></label>
+              </div>
 
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro22" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 2.2м с козырьком" data-key="kvadro22" data-price="227700" data-type="kvadro" data-dlina="2" data-razmer="2" data-price-el="227700" data-price-kedr="258000" data-img1="kvadro22_1.jpg" data-img2="kvadro22_2.jpg"> 
+                <label class="custom-control-label" for="kvadro22">квадро-баня 2.2м с козырьком <span class="text-muted">- от 227700 руб.</span></label>
+              </div>
 
-                            <a href="https://github.com/sponsors/taylorotwell" class="ml-1 underline">
-                                Sponsor
-                            </a>
-                        </div>
-                    </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro3" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 3м с козырьком" data-key="kvadro3" data-price="276800" data-type="kvadro" data-dlina="3" data-razmer="3" data-price-el="276800" data-price-kedr="313400" data-img1="kvadro3_1.jpg" data-img2="kvadro3_2.jpg"> 
+                <label class="custom-control-label" for="kvadro3">квадро-баня 3м с козырьком <span class="text-muted">- от 276800 руб.</span></label>
+              </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-                    </div>
-                </div>
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro35" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 3.5м с козырьком" data-key="kvadro35" data-price="297000" data-type="kvadro" data-dlina="3,5" data-razmer="35" data-price-el="297000" data-price-kedr="336400" data-img1="kvadro35_1.jpg" data-img2="kvadro35_2.jpg"> 
+                <label class="custom-control-label" for="kvadro35">квадро-баня 3.5м с козырьком <span class="text-muted">- от 297000 руб.</span></label>
+              </div>
+
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro4" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 4м с козырьком" data-key="kvadro4" data-price="347900" data-type="kvadro" data-dlina="4" data-razmer="4" data-price-el="347900" data-price-kedr="395900" data-img1="kvadro4_1.jpg" data-img2="kvadro4_2.jpg"> 
+                <label class="custom-control-label" for="kvadro4">квадро-баня 4м с козырьком <span class="text-muted">- от 347900 руб.</span></label>
+              </div>
+
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro5" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 5м с козырьком" data-key="kvadro5" data-price="375300" data-type="kvadro" data-dlina="5" data-razmer="5" data-price-el="375300" data-price-kedr="432000" data-img1="kvadro5_1.jpg" data-img2=""> 
+                <label class="custom-control-label" for="kvadro5">квадро-баня 5м с козырьком <span class="text-muted">- от 375300 руб.</span></label>
+              </div>
+
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro5s" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 5м с козырьком (3 секции)" data-key="kvadro5s" data-price="389000" data-type="kvadro" data-dlina="5" data-razmer="5" data-price-el="389000" data-price-kedr="443000" data-img1="kvadro5s_1.jpg" data-img2="kvadro5s_2.jpg"> 
+                <label class="custom-control-label" for="kvadro5s">квадро-баня 5м с козырьком (3 секции) <span class="text-muted">- от 389000 руб.</span></label>
+              </div>
+
+              
+              <div class="custom-control custom-radio">
+                <input id="kvadro6" name="product" type="radio" class="custom-control-input js-product" required="" value="квадро-баня 6м с козырьком" data-key="kvadro6" data-price="456000" data-type="kvadro" data-dlina="6" data-razmer="6" data-price-el="456000" data-price-kedr="513300" data-img1="kvadro6_1.jpg" data-img2="kvadro6_2.jpg"> 
+                <label class="custom-control-label" for="kvadro6">квадро-баня 6м с козырьком <span class="text-muted">- от 456000 руб.</span></label>
+              </div>
+
+               
+
             </div>
+          
+          <hr class="mb-4">
+           
+          <h4 class="mb-3">Выберите материал</h4> 
+          <div class="row">
+              <div class="col-md-6 mb-3">
+            <div class="custom-control custom-radio">
+              <input type="radio" checked="" name="product_material" class="custom-control-input js-product-material" id="material-el" value="el">
+              <label class="custom-control-label" for="material-el">Ель</label>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_material" class="custom-control-input  js-product-material" id="material-kedr" value="kedr">
+              <label class="custom-control-label" for="material-kedr">Кедр</label>
+            </div>
+          </div>
         </div>
-    </body>
-</html>
+
+           <hr class="mb-4">
+           
+          <h4 class="mb-3">Увеличение</h4> 
+          <div class="row">
+          <div class="col-md-3 mb-3">
+            <div class="custom-control custom-radio">
+
+               
+
+
+              <input type="radio" checked="" name="product_rash" class="custom-control-input js-product-rash" id="rash0" value="0">
+              <label class="custom-control-label" for="rash0">Нет</label>
+            </div>
+          </div>
+
+          <div class="col-md-3 mb-3">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash23" data-name="до 2.3м" value="23" data-bochka-2="6800" data-bochka-3="8550" data-bochka-35="9150" data-bochka-4="10850" data-bochka-5="12400" data-bochka-6="14700" data-bochka_kedr-2="6800" data-bochka_kedr-3="8550" data-bochka_kedr-35="9150" data-bochka_kedr-4="10850" data-bochka_kedr-5="12400" data-bochka_kedr-6="14700" data-kvadro-2="7950" data-kvadro-3="9750" data-kvadro-35="10350" data-kvadro-4="12100" data-kvadro-5="13500" data-kvadro-6="15900" data-kvadro_kedr-2="7950" data-kvadro_kedr-3="9750" data-kvadro_kedr-35="10350" data-kvadro_kedr-4="12100" data-kvadro_kedr-5="13500" data-kvadro_kedr-6="15900">
+              <label class="custom-control-label" for="rash23">до 2.3м</label>
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash24" data-name="до 2.4м" value="24" data-bochka-2="8150" data-bochka-3="10250" data-bochka-35="11000" data-bochka-4="13000" data-bochka-5="14850" data-bochka-6="17650" data-bochka_kedr-2="8150" data-bochka_kedr-3="10250" data-bochka_kedr-35="11000" data-bochka_kedr-4="13000" data-bochka_kedr-5="14850" data-bochka_kedr-6="17650" data-kvadro-2="9550" data-kvadro-3="11700" data-kvadro-35="12400" data-kvadro-4="14500" data-kvadro-5="16200" data-kvadro-6="19050" data-kvadro_kedr-2="9550" data-kvadro_kedr-3="11700" data-kvadro_kedr-35="12400" data-kvadro_kedr-4="14500" data-kvadro_kedr-5="16200" data-kvadro_kedr-6="19050">
+              <label class="custom-control-label" for="rash24">до 2.4м</label>
+            </div>
+          </div>
+
+
+ <div class="col-md-3 mb-3 ">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash25" data-name="до 2.5м" value="25" data-bochka-5="28700" data-bochka-6="31500" data-kvadro-5="30050" data-kvadro-6="32950" data-kvadro_kedr-5="30050" data-kvadro_kedr-6="35550">
+              <label class="custom-control-label" for="rash25">до 2.5м</label>
+            </div>
+          </div>
+
+
+ <div class="col-md-3 mb-3 dopitem6" style="opacity: 0.5;">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash26" data-name="до 2.6м" value="26" data-kvadro-6="40850" data-kvadro_kedr-6="46050" disabled="">
+              <label class="custom-control-label" for="rash26">до 2.6м</label>
+            </div>
+          </div>
+
+
+
+
+ <div class="col-md-3 mb-3 dopitem6" style="opacity: 0.5;">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash27" data-name="до 2.7м" value="27" data-kvadro-6="48750" data-kvadro_kedr-6="56550" disabled="">
+              <label class="custom-control-label" for="rash27">до 2.7м</label>
+            </div>
+          </div>
+
+
+
+ <div class="col-md-3 mb-3 dopitem6" style="opacity: 0.5;">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash28" data-name="до 2.8м" value="28" data-kvadro-6="56650" data-kvadro_kedr-6="67050" disabled="">
+              <label class="custom-control-label" for="rash28">до 2.8м</label>
+            </div>
+          </div>
+
+
+
+ <div class="col-md-3 mb-3 dopitem6" style="opacity: 0.5;">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash29" data-name="до 2.9м" value="29" data-kvadro-6="64550" data-kvadro_kedr-6="77550" disabled="">
+              <label class="custom-control-label" for="rash29">до 2.9м</label>
+            </div>
+          </div>
+
+
+
+ <div class="col-md-3 mb-3 dopitem6" style="opacity: 0.5;">
+            <div class="custom-control custom-radio">
+              <input type="radio" name="product_rash" class="custom-control-input  js-product-rash" id="rash30" data-name="до 3.0м" value="30" data-kvadro-6="72450" data-kvadro_kedr-6="88050" disabled="">
+              <label class="custom-control-label" for="rash30">до 3.0м</label>
+            </div>
+          </div>
+
+
+        </div>
+
+       
+
+
+          <hr class="mb-4">
+           <h4 class="mb-3">Дополнительные опции</h4>
+           <div class="dopoption">
+
+
+             <input type="text" name="name_client" id="name_client" class="form-control js-km" placeholder="Имя клиента в род. падеже, например Егора Николаевича"><br>
+
+
+                                                 <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop21" value="dop2" data-price="2850" data-name="Окно маленькое (30х40)">
+
+           
+
+              <label class="custom-control-label" for="dop21">Окно маленькое (30х40) <span class="text-muted">- 2850 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop31" value="dop3" data-price="4050" data-name="Окно среднее (64х94)">
+
+           
+
+              <label class="custom-control-label" for="dop31">Окно среднее (64х94) <span class="text-muted">- 4050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop311" value="dop31" data-price="6050" data-name="Окно большое глухое (70х150)">
+
+           
+
+              <label class="custom-control-label" for="dop311">Окно большое глухое (70х150) <span class="text-muted">- 6050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop41" value="dop4" data-price="2680" data-name="Окно на дверь в парилку (30х30)">
+
+           
+
+              <label class="custom-control-label" for="dop41">Окно на дверь в парилку (30х30) <span class="text-muted">- 2680 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop51" value="dop5" data-price="25750" data-name="Панорамное окно в пол стены">
+
+           
+
+              <label class="custom-control-label" for="dop51">Панорамное окно в пол стены <span class="text-muted">- 25750 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop61" value="dop6" data-price="8050" data-name="Стеклянная дверь в парилку">
+
+           
+
+              <label class="custom-control-label" for="dop61">Стеклянная дверь в парилку <span class="text-muted">- 8050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop611" value="dop61" data-price="7780" data-name="Обливное устройство">
+
+           
+
+              <label class="custom-control-label" for="dop611">Обливное устройство <span class="text-muted">- 7780 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop621" value="dop62" data-price="5500" data-name="Оцинкованный защитный лист на минерит внутри парной">
+
+           
+
+              <label class="custom-control-label" for="dop621">Оцинкованный защитный лист на минерит внутри парной <span class="text-muted">- 5500 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop631" value="dop63" data-price="2000" data-name="Оцинкованный защитный лист на минерит снаружи парной">
+
+           
+
+              <label class="custom-control-label" for="dop631">Оцинкованный защитный лист на минерит снаружи парной <span class="text-muted">- 2000 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop71" value="dop7" data-price="5360" data-name="Печь сбоку (баня-бочка)">
+
+           
+
+              <label class="custom-control-label" for="dop71">Печь сбоку (баня-бочка) <span class="text-muted">- 5360 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop81" value="dop8" data-price="4050" data-name="Печь сбоку (квадро-баня)">
+
+           
+
+              <label class="custom-control-label" for="dop81">Печь сбоку (квадро-баня) <span class="text-muted">- 4050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop91" value="dop9" data-price="2680" data-name="Печь в углу с топкой в комнату отдыха">
+
+           
+
+              <label class="custom-control-label" for="dop91">Печь в углу с топкой в комнату отдыха <span class="text-muted">- 2680 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop101" value="dop10" data-price="4050" data-name="Стеклянная дверца на печь">
+
+           
+
+              <label class="custom-control-label" for="dop101">Стеклянная дверца на печь <span class="text-muted">- 4050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop121" value="dop12" data-price="26600" data-name="Душ ПОД КЛЮЧ (душевой поддон, смеситель, лейка, бойлер и сантехнич. разводка)">
+
+           
+
+              <label class="custom-control-label" for="dop121">Душ ПОД КЛЮЧ (душевой поддон, смеситель, лейка, бойлер и сантехнич. разводка) <span class="text-muted">- 26600 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop131" value="dop13" data-price="12100" data-name="Душ ПОД КЛЮЧ без бойлера (душевой поддон, смеситель, лейка и сантехническая разводка)">
+
+           
+
+              <label class="custom-control-label" for="dop131">Душ ПОД КЛЮЧ без бойлера (душевой поддон, смеситель, лейка и сантехническая разводка) <span class="text-muted">- 12100 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop141" value="dop14" data-price="5400" data-name="Душевой поддон баня-бочка (70х70)">
+
+           
+
+              <label class="custom-control-label" for="dop141">Душевой поддон баня-бочка (70х70) <span class="text-muted">- 5400 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop161" value="dop16" data-price="3850" data-name="Душевой поддон квадро-баня (70х70)">
+
+           
+
+              <label class="custom-control-label" for="dop161">Душевой поддон квадро-баня (70х70) <span class="text-muted">- 3850 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop181" value="dop18" data-price="9140" data-name="Двухярусный полок в парилку">
+
+           
+
+              <label class="custom-control-label" for="dop181">Двухярусный полок в парилку <span class="text-muted">- 9140 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop281" value="dop28" data-price="6520" data-name="Светодиодная подсветка под полок">
+
+           
+
+              <label class="custom-control-label" for="dop281">Светодиодная подсветка под полок <span class="text-muted">- 6520 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop271" value="dop27" data-price="1200" data-name="Ограждение для печи">
+
+           
+
+              <label class="custom-control-label" for="dop271">Ограждение для печи <span class="text-muted">- 1200 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop231" value="dop23" data-price="26800" data-name="Лиственница на весь пол">
+
+           
+
+              <label class="custom-control-label" for="dop231">Лиственница на весь пол <span class="text-muted">- 26800 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop251" value="dop25" data-price="2000" data-name="Ступени на вход">
+
+           
+
+              <label class="custom-control-label" for="dop251">Ступени на вход <span class="text-muted">- 2000 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop261" value="dop26" data-price="1400" data-name="Рундук">
+
+           
+
+              <label class="custom-control-label" for="dop261">Рундук <span class="text-muted">- 1400 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2611" value="dop261" data-price="6050" data-name="Кровать в комнате отдыха">
+
+           
+
+              <label class="custom-control-label" for="dop2611">Кровать в комнате отдыха <span class="text-muted">- 6050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2621" value="dop262" data-price="5460" data-name="Подспинники из липы в парной">
+
+           
+
+              <label class="custom-control-label" for="dop2621">Подспинники из липы в парной <span class="text-muted">- 5460 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2631" value="dop263" data-price="2450" data-name="Шкаф для бойлера">
+
+           
+
+              <label class="custom-control-label" for="dop2631">Шкаф для бойлера <span class="text-muted">- 2450 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2641" value="dop264" data-price="4050" data-name="Трапик из лиственницы">
+
+           
+
+              <label class="custom-control-label" for="dop2641">Трапик из лиственницы <span class="text-muted">- 4050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2651" value="dop265" data-price="7120" data-name="Перегородка для душевого отделения в банях 3,5 м и 4 м">
+
+           
+
+              <label class="custom-control-label" for="dop2651">Перегородка для душевого отделения в банях 3,5 м и 4 м <span class="text-muted">- 7120 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2661" value="dop266" data-price="2400" data-name="Сантехническая разводка">
+
+           
+
+              <label class="custom-control-label" for="dop2661">Сантехническая разводка <span class="text-muted">- 2400 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop191" value="dop19" data-price="24200" data-name="Крыльцо на баню-бочку (1000х2100)">
+
+           
+
+              <label class="custom-control-label" for="dop191">Крыльцо на баню-бочку (1000х2100) <span class="text-muted">- 24200 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop201" value="dop20" data-price="26800" data-name="Крыльцо на квадро-баню (1000х2100)">
+
+           
+
+              <label class="custom-control-label" for="dop201">Крыльцо на квадро-баню (1000х2100) <span class="text-muted">- 26800 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop211" value="dop21" data-price="10770" data-name="Дверь сбоку на баню-бочку">
+
+           
+
+              <label class="custom-control-label" for="dop211">Дверь сбоку на баню-бочку <span class="text-muted">- 10770 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop221" value="dop22" data-price="8050" data-name="Дверь сбоку на квадро-баню">
+
+           
+
+              <label class="custom-control-label" for="dop221">Дверь сбоку на квадро-баню <span class="text-muted">- 8050 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop241" value="dop24" data-price="30000" data-name="Сборка на участке  (Баня-бочка)">
+
+           
+
+              <label class="custom-control-label" for="dop241">Сборка на участке  (Баня-бочка) <span class="text-muted">- 30000 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2411" value="dop241" data-price="36000" data-name="Сборка на участке  (Квадро-баня)">
+
+           
+
+              <label class="custom-control-label" for="dop2411">Сборка на участке  (Квадро-баня) <span class="text-muted">- 36000 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2431" value="dop243" data-price="9660" data-name="Лаги из лиственницы">
+
+           
+
+              <label class="custom-control-label" for="dop2431">Лаги из лиственницы <span class="text-muted">- 9660 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2441" value="dop244" data-price="33800" data-name="Отделка парной липой">
+
+           
+
+              <label class="custom-control-label" for="dop2441">Отделка парной липой <span class="text-muted">- 33800 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop2991" value="dop299" data-price="7000" data-name="Доставка на Манипуляторе по городу Краснодару и в пределах 35км">
+
+           
+
+              <label class="custom-control-label" for="dop2991">Доставка на Манипуляторе по городу Краснодару и в пределах 35км <span class="text-muted">- 7000 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop291" value="dop29" data-price="150" data-name="Доставка на манипуляторе">
+
+           
+
+              <label class="custom-control-label" for="dop291">Доставка на манипуляторе <span class="text-muted">- 150 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                                          <div class="custom-control custom-checkbox">
+                
+         
+               
+              <input type="checkbox" name="dop" class="custom-control-input js-dop" id="dop301" value="dop30" data-price="70" data-name="Доставка под сборку на участке">
+
+           
+
+              <label class="custom-control-label" for="dop301">Доставка под сборку на участке <span class="text-muted">- 70 руб.</span></label>
+            
+
+               
+
+
+            </div>
+
+               
+                 
+               <div class="input-group">
+              <input type="text" name="km" id="km" class="form-control js-km" placeholder="километров">
+          
+            </div>
+
+          </div>
+
+
+
+           
+      
+          <!-- <hr class="mb-4">  
+          <h4 class="mb-3">Контактные данные клиента</h4>
+          <form class="needs-validation" novalidate="">
+            <div class="mb-3">
+              <label for="name">ФИО <span class="text-muted"></span></label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="">
+            </div>
+
+           <div class="mb-3">
+              <label for="address2">Телефон<span class="text-muted"></span></label>
+              <input type="text" class="form-control" name="phone" id="phone" placeholder="" required="">
+            </div>
+
+
+            <div class="mb-3">
+              <label for="address">Адрес установки</label>
+              <input type="text" class="form-control" id="address" placeholder="" >
+              <div class="invalid-feedback">
+                
+              </div>
+            </div>  -->
+
+          <!--   <div class="mb-3">
+              <label for="email">Email <span class="text-muted">(по желанию)</span></label>
+              <input type="email" class="form-control" name="email" id="email" placeholder="">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+
+         
+            <hr class="mb-4">
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Сохранить расчет</button>
+
+               -->
+
+
+             
+
+          
+
+          
+          <form class="needs-validation card p-2 no-print mb-3 mt-3" novalidate="">
+            <h4 class="mb-3">Добавить доп. в список</h4>
+
+            <div class="mb-3">
+              <label for="name">Название допа <span class="text-muted"></span></label>
+              <input type="text" class="form-control" id="adddop" name="dops" placeholder="">
+            </div>
+
+           <div class="mb-3">
+              <label for="address2">Цена<span class="text-muted"></span></label>
+              <input type="text" class="form-control" id="addprice" name="price" placeholder="" required=""><input type="hidden" name="formname" value="adddop">
+            </div>
+
+             <button class="btn btn-primary btn-lg btn-block js-add-dop" type="button">Добавить доп. в список</button>
+
+           </form>
+
+
+
+        </div>
+
+
+        <div class="col-md-6 mb-6  order-md-2 make-me-sticky print_full">
+          <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Продукт</span>
+          
+          </h4>
+          <ul class="list-group list-group-standart mb-3" id="">
+            <li class="list-group-item d-flex justify-content-between lh-condensed print_full">
+              <div>
+                <h6 class="my-0 hide-item" id="product_name">баня-бочка 6м с козырьком</h6>
+                <small class="text-muted hide-item">Материал: <span id="product_material">Кедр</span></small>
+                <p class="product_name">Экологичная <span class="js_product_name">баня-бочка 6м с козырьком</span> 
+                из массива <span class="product_material">кедра</span></p>
+              </div>
+              <span class="text-muted js_product_price" id="product_price">462&nbsp;900 руб.</span>
+            </li>
+            
+            
+            
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+          <li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Трапики из сосны на полу</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Мягкая кровля “Технониколь”</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Огне- и биозащита</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Обработка антисептиком Неомид</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Сливы под канализацию в каждом помещении</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Дренажная система в торцах</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Печь в сборе Везувий Оптимум (бак на 50л из нержавейки)</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Форточка 30х40 из липы</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Две лавки</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Стол</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Электрическая разводка и светильники IP54</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Выключатели и розетки</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="">Стандартный комплект</span></li><li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Подкровельный ковер</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">4500 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Уличное освещение</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">1500 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Обработка торцов прорезиненной пропиткой Tikkurila Vinha</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">2000 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Два полка из липы</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">14000 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">120кг камня вулканической породы Габбро Диабаз</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">1500 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Рундук</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">1400 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between lh-condensed">
+<div><h6 class="my-0">Лиственница в полу</h6>
+<small class="text-muted"></small></div><span class="text-muted" style="text-decoration: line-through;">12000 руб.</span></li>
+
+<li class="list-group-item list-group-item-baza d-flex justify-content-between no-print lh-condensed" style="display:none !important;">
+<div><h6 class="my-0">Вы экономите</h6>
+<small class="text-muted"></small></div><span id="economy" class="text-muted" style="text-decoration: line-through;">36900</span></li>
+   </ul>
+
+
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted dop-item dops-item">Дополнительные опции</span>
+          
+          </h4>
+
+          <ul class="list-group list-striped mb-3 print_full dop-item rash-item"><li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Увеличение <span id="product_rash">до 2.4м</span></h6>                <small class="text-muted"></small>              </div><span class="text-muted" id="product_rash_price">17&nbsp;650 руб.</span>            </li></ul>
+
+
+          <ul class="list-group list-group-dop mb-3 print_full dops-item" id="list_dop"> <li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Окно маленькое (30х40)</h6>                <small class="text-muted"></small>              </div><span class="text-muted">2850 руб.</span>            </li> <li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Окно среднее (64х94)</h6>                <small class="text-muted"></small>              </div><span class="text-muted">4050 руб.</span>            </li> <li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Окно большое глухое (70х150)</h6>                <small class="text-muted"></small>              </div><span class="text-muted">6050 руб.</span>            </li> <li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Окно на дверь в парилку (30х30)</h6>                <small class="text-muted"></small>              </div><span class="text-muted">2680 руб.</span>            </li> <li class="list-group-item d-flex justify-content-between lh-condensed"> <div><h6 class="my-0">Панорамное окно в пол стены</h6>                <small class="text-muted"></small>              </div><span class="text-muted">25750 руб.</span>            </li></ul>
+
+
+
+             <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">Итого</span>
+          
+          </h4>
+            <ul class="list-group print_full mb-3">
+            
+           
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Стоимость комплекта</span>
+              <strong id="summa_complect">498&nbsp;400 руб.</strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between text-success">
+              <span>Экономия на опциях в комплекте</span>
+              <strong id="summa_economy">-35&nbsp;500 руб.</strong>
+            </li>
+             <li class="list-group-item d-flex justify-content-between dop-item">
+              <span>Стоимость доп. опций</span>
+              <strong id="summa_dop">41&nbsp;380 руб.</strong>
+            </li>
+            <li class="list-group-item d-flex li-big justify-content-between" style="background: #f5f6fa;">
+              <span>Итого</span>
+              <strong id="summa_itogo">521&nbsp;930 руб.</strong>
+            </li>
+          
+            <li class="list-group-item d-flex hide-item item-promo justify-content-between bg-white">
+              <div class="text-success">
+                <!-- <span>Скидка -<span id="promo"></span>% действительна до 3-х дней</span> -->
+                <span>Скидка действительна до 3-х дней</span>
+              
+              </div>
+              <span id="summa_promo">0 руб.</span>
+            </li>
+
+
+            <li class="list-group-item d-flex hide-item item-promo justify-content-between">
+              <span>Итого со скидкой</span>
+              <strong id="summa_itogo_promo">192 000 руб.</strong>
+            </li>
+          </ul>
+
+          <form class="card p-2 no-print mb-3">
+            <div class="input-group">
+              <input type="text" name="promocod" class="form-control js-promo" placeholder="Промокод">
+             <!--  <div class="input-group-append">
+                <button type="submit" class="btn btn-secondary">Применить</button>
+              </div> -->
+            </div>
+          </form>
+
+         <div class="installment-block">
+            <h4 class="d-flex justify-content-between align-items-center installment-title mb-3 no-print">
+                <span class="text-muted">Рассрочка 0%</span>
+            </h4>
+
+            <div class="list-group mb-3 no-print">
+
+                <div class="row" style="margin:0px">
+
+                    <div class="col-md-4 mb-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" checked="" required="" name="installment" class="custom-control-input js-installment" id="installment-none" value="0">
+                            <label class="custom-control-label" for="installment-none">нет</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" required="" name="installment" class="custom-control-input js-installment" id="installment-6" value="6">
+                            <label class="custom-control-label" for="installment-6">6 месяцев</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="custom-control custom-radio">
+                            <input type="radio" required="" name="installment" class="custom-control-input js-installment" id="installment-12" value="12">
+                            <label class="custom-control-label" for="installment-12">12 месяцев</label>
+                        </div>
+                    </div>
+                    
+                </div>
+               
+            </div>
+
+            <ul class="list-group mb-3 installment hide-item" id="">
+                <li class="list-group-item d-flex justify-content-between lh-condensed down_payment li-big print_full hide-item">
+                    <div>
+                        <h6 class="my-0" id="">Первоначальный взнос </h6>
+                    </div>
+                    <span class="text-muted" id="down_payment">0 руб.</span>
+                </li>
+                <li class="list-group-item li-big d-flex justify-content-between lh-condensed monthly_paymen print_full">
+                    <div>
+                        <h6 class="my-0" id="">Ежемесячный платеж на <span id="count_month">12</span> мес.</h6>
+                    </div>
+                    <span class="text-muted" id="monthly_paymen">16567 руб.</span>
+                </li>
+            </ul>
+        </div>
+
+          <div class="col-md-12 mb-3 print-manager">
+                <label for="country" class=" no-print">Инженер проекта</label>
+                <select class="custom-select d-block js-manager  no-print" id="manager" required="">
+                  <option value="0">Выберите</option>
+
+                  
+                    <option value="Краснодарская<br/>деревообрабатывающая фабрика" data-phone="8 (961) 525-06-46" data-name="Краснодарская<br/>деревообрабатывающая фабрика" data-dolgnost="" data-img="img/кдф-квадрат.jpg" data-email="info@fabrika23.ru">Краснодарскаядеревообрабатывающая фабрика</option>
+                
+                    <option value="Андрей Адарьев" data-phone="8 (928) 400 49 88" data-name="Андрей Адарьев" data-dolgnost="Инженер проектов" data-img="img/andreev_a.jpg" data-email="adarev.andrey@fabrika23.ru">Андрей Адарьев</option>
+                
+                    <option value="Сысуев Илья Сергеевич" data-phone="8 (978) 995 10 85" data-name="Сысуев Илья Сергеевич" data-dolgnost="Руководитель инженерного отдела" data-img="img/sisuev_i.jpg" data-email="Susyev.ilya@fabrika23.ru">Сысуев Илья Сергеевич</option>
+                
+                    <option value="Смиренская Марина Александровна" data-phone="8 (978) 994 91 60" data-name="Смиренская Марина Александровна" data-dolgnost="Инженер проектов" data-img="img/smirenskaya_m.jpg" data-email="smirenskaya.marina@fabrika23.ru">Смиренская Марина Александровна</option>
+                
+                    <option value="Макурин Александр" data-phone="8 (928) 407 39 51" data-name="Макурин Александр" data-dolgnost="Инженер проектов" data-img="img/makurin_a.jpg" data-email="makurin.a@fabrika23.ru">Макурин Александр</option>
+                
+                    <option value="Энтин Дмитрий" data-phone="8 (928) 037 01 87 " data-name="Энтин Дмитрий" data-dolgnost="Инженер проектов" data-img="img/entin_d.jpg" data-email="entin.dmitriy@fabrika23.ru">Энтин Дмитрий</option>
+                
+                    <option value="Ломаев Дмитрий" data-phone="8 (978) 994 91 93" data-name="Ломаев Дмитрий" data-dolgnost="Инженер проектов" data-img="img/кдф-квадрат.jpg" data-email="">Ломаев Дмитрий</option>
+                
+                    <option value="Расторгуев Роман" data-phone="8 (928) 215 31 46" data-name="Расторгуев Роман" data-dolgnost="Инженер проектов" data-img="img/rastorguev_r.jpg" data-email="">Расторгуев Роман</option>
+                                </select>
+                
+            </div>
+
+
+          <ul class="list-group mb-3 box-manager no-print" id="">
+            <li class="list-group-item d-flex justify-content-between lh-condensed print_full">
+              <div style="width:100%">
+                <img src="img/smirenskaya_m.jpg" id="manager_photo" class="manager-phone manager_photo">
+                <h6 class="my-0 manager_name" id="manager_name">Смиренская Марина Александровна</h6>
+                <small class="text-muted"><span class="manager_dolgnost" id="manager_dolgnost">Инженер проектов</span><br>
+                  <span class="manager_phone" id="manager_phone">8 (978) 994 91 60</span><br class="br-print">
+                <span class="manager_email" id="manager_email">smirenskaya.marina@fabrika23.ru</span></small>
+              </div>
+            </li>
+            
+            
+            </ul>
+
+            <ul class="list-inline no-print">
+          <li class="list-inline-item"><a style="cursor: pointer;" onclick="window.print()">Распечатать</a></li>
+          <li class="list-inline-item"><a style="cursor: pointer;" onclick="window.print()">Сохранить PDF / Предпросмотр</a></li>
+        </ul>
+
+
+
+
+        </div>
+
+
+      </div>
+
+@endsection
