@@ -468,3 +468,8 @@ a.footer-link img {
 }
 
 }
+
+
+.category-active {
+    text-decoration: underline;
+}
