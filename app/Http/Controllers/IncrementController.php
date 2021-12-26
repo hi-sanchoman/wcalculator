@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Increment;
 
 class IncrementController extends AppBaseController
 {
@@ -29,7 +30,7 @@ class IncrementController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $increments = $this->incrementRepository->all();
+        $increments = Increment::with(['product'])->get();
 
         return view('increments.index')
             ->with('increments', $increments);

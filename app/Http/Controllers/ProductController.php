@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use DB;
 use Response;
+use App\Models\Product;
 
 class ProductController extends AppBaseController
 {
@@ -30,7 +31,7 @@ class ProductController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $products = $this->productRepository->all();
+        $products = Product::with(['category'])->get();
 
         return view('products.index')
             ->with('products', $products);

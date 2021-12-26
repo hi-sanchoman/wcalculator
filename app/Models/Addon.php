@@ -80,4 +80,8 @@ class Addon extends Model
             'input' => 'С полем ввода'
         ];
     } 
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

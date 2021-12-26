@@ -77,4 +77,8 @@ class Material extends Model
 
         return $materials;
     }
+
+    public function category() {
+        return $this->belongsTo(Category::class);
+    }
 }

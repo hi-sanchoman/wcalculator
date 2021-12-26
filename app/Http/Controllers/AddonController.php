@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Addon;
 
 class AddonController extends AppBaseController
 {
@@ -29,7 +30,7 @@ class AddonController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $addons = $this->addonRepository->all();
+        $addons = Addon::with(['category'])->get();
 
         return view('addons.index')
             ->with('addons', $addons);

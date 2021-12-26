@@ -9,6 +9,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\Material;
 
 class MaterialController extends AppBaseController
 {
@@ -29,7 +30,7 @@ class MaterialController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $materials = $this->materialRepository->all();
+        $materials = Material::with(['category'])->get();
 
         return view('materials.index')
             ->with('materials', $materials);
