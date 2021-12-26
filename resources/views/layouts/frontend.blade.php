@@ -163,8 +163,6 @@
 
 
     function calc() {
-
-
         $('.dopitem6').css('opacity', '0.5');
         $('.dopitem6').find('input').prop("disabled", true);
 
@@ -191,7 +189,7 @@
         //$('#product_price').html($product_price);
         $('#product_material').html($product_material);
         $('.product_material').html($product_material_new);
-        $km = Number($('#km').val());
+        //$km = Number($('#km').val());
 
         $name_client = $('#name_client').val();
         if ($name_client != '') {
@@ -199,15 +197,11 @@
         }
 
 
-
         //$obvyazka = Number($('#countdop2981').val());
         $product = $('input[name=product]:checked');
-        console.log($product.val());
+        //console.log($product.val());
 
         $product_name = $product.val();
-
-
-
 
         if ($product_name == 'квадро-баня 6м с козырьком') {
             $('.dopitem6').css('opacity', '1');
@@ -227,6 +221,10 @@
         // }
 
 
+        console.log('prices', $product_price, $product_type, $product_razmer, $product_name);
+
+
+        // set hidden images
         $('.js_product_img1').attr('src', $product_img1);
 
         if ($product_img2 == '') {
@@ -235,7 +233,6 @@
             $('.js_product_img2').show();
             $('.js_product_img2').attr('src', $product_img2);
         }
-
 
         $product_dlina = $product.data('dlina');
         $('.product_dlina').html($product_dlina);
@@ -247,8 +244,7 @@
 
 
 
-
-
+        // increments
         $('.rash-item').addClass('hide-item');
         $product_rash = $('input[name=product_rash]:checked');
 
@@ -279,7 +275,7 @@
             $rash_price = 0;
         }
 
-
+        // show total info
         $('#product_name').html($product_name);
         $('.product_name').html($product_name);
         $('.js_product_name').html($product_name);
@@ -330,6 +326,10 @@
 
         $summa_economy = Number($('#economy').html());
 
+        if (isNaN($summa_economy)) {
+            $summa_economy = 0;
+        }
+
         $summa_complect = $product_price + $summa_economy;
 
 
@@ -341,13 +341,20 @@
             $('.dop-item').removeClass('hide-item');
         }
 
+        console.log('total', $summa_dop, $summa_economy, $summa_itogo);
+
 
         $('#summa_dop').html($summa_dop.toLocaleString('ru') + ' руб.');
         $('#summa_itogo').html($summa_itogo.toLocaleString('ru') + ' руб.');
 
-        $('#summa_economy').html('-' + $summa_economy.toLocaleString('ru') + ' руб.');
-        $('#summa_complect').html($summa_complect.toLocaleString('ru') + ' руб.');
-
+        if (!isNaN($summa_economy)) {
+            $('#summa_economy').html('-' + $summa_economy.toLocaleString('ru') + ' руб.');
+            $('#summa_complect').html($summa_complect.toLocaleString('ru') + ' руб.');
+        } else {
+            $('#summa_economy').hide();
+            $('#summa_complect').hide();
+        }
+        
 
         $promo = Number($('.js-promo').val());
         $summa_promo = 0;
