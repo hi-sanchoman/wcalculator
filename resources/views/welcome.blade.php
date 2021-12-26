@@ -4,6 +4,7 @@
 
 @section('content')
 
+@if ($category->slug == 'bath')
 <div class="row">
     <div class="col-md-4  ">
         <img class="d-block   logo" src="{{ asset('img/kdf-new-logo.svg') }}" alt="" height="72">
@@ -22,7 +23,7 @@
     </p>
 </div>
 
-@if ($category->slug == 'bath')
+
 <div class="only-print">
     <div class="row ">
         <div class="col-md-7">
@@ -40,6 +41,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="only-print">
     <div class="row ">
@@ -2667,7 +2669,7 @@
         </div>
     </div>
 </div>
-@endif
+
 
 <div class="footer-print only-print">
     <div class="row">
@@ -2703,6 +2705,7 @@
 </div>
 
 <div class="page-break"></div>
+@endif
 
 <div class="only-print">
     <div class="row">
@@ -2860,6 +2863,9 @@
     </div>
 
 
+
+
+
     <div class="col-md-6 mb-6  order-md-2 make-me-sticky print_full">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Продукт</span>
@@ -2877,6 +2883,8 @@
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted dop-item  dops-item hide-item">Дополнительные опции</span>
         </h4>
+
+
         <ul class="list-group list-striped mb-3 print_full dop-item rash-item ">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
@@ -2884,8 +2892,12 @@
                 </div><span class="text-muted" id="product_rash_price">0 руб.</span>
             </li>
         </ul>
+
+
         <ul class="list-group list-group-dop mb-3 print_full dops-item hide-item" id="list_dop">
         </ul>
+
+
         <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">Итого</span>
         </h4>

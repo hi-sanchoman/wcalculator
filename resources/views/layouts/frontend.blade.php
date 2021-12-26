@@ -300,7 +300,7 @@
             if ($(this).data('type') == 'input') {
                 var km = $('#km_' + $(this).data('id')).val()
                 $price_dop = Number($(this).data('price')) * km;
-                $name_dop = $(this).data('name') + ' (' + km + ' км)';
+                $name_dop = $(this).data('name') + ' (' + km + ')';
                 $price_dost = Number($(this).data('price')) * km;
             }
 
