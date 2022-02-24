@@ -14,7 +14,7 @@
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
 
-    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
 
     @routes
     @yield('page_css')
@@ -74,7 +74,7 @@
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
 @yield('page_js')
 @yield('scripts')
@@ -83,7 +83,9 @@
     let loginUrl = '{{ route('login') }}';
     // Loading button plugin (removed from BS4)
     (function ($) {
-        var editor = new FroalaEditor('.editor');
+        tinymce.init({
+            selector: '.editor'
+        });    
 
         $.fn.button = function (action) {
             if (action === 'loading' && this.data('loading-text')) {
