@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddonsTable extends Migration
+class CreateProductAdvantagesTable extends Migration
 {
 
     /**
@@ -14,17 +14,14 @@ class CreateAddonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('addons', function (Blueprint $table) {
+        Schema::create('product_advantages', function (Blueprint $table) {
             $table->id('id');
-            $table->bigInteger('category_id')->unsigned();
-            $table->string('slug')->unique();
+            $table->bigInteger('product_id')->unsigned();
             $table->string('name');
-            $table->integer('price')->unsigned();
-            $table->string('type');
             $table->timestamps();
             $table->softDeletes();
             
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -35,6 +32,6 @@ class CreateAddonsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('addons');
+        Schema::drop('product_advantages');
     }
 }

@@ -47,7 +47,11 @@ class Product extends Model
         'price_el',
         'price_kedr',
         'img_1',
-        'img_2'
+        'img_2',
+        'description',
+        'column1',
+        'column2',
+        'column3',
     ];
 
     /**
@@ -116,5 +120,31 @@ class Product extends Model
 
     public function category() {
         return $this->belongsTo(Category::class);
+    }
+
+    public function advantages() {
+        return $this->hasMany(ProductAdvantage::class);
+    }
+
+    public function inners() {
+        return $this->hasMany(Inner::class);
+    }
+
+    public function attributes() {
+        return $this->hasMany(Attribute::class);
+    }
+
+
+
+
+
+    public static function discount($product) {
+        $total = 0;
+
+        foreach ($product->inners as $inner) {
+            $total += $inner->price;
+        }
+
+        return $total;
     }
 }

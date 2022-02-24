@@ -27,7 +27,7 @@ class SiteController extends Controller
     {
         $category = Category::whereSlug($slug)->firstOrFail();
         $managers = Manager::get();
-        $products = Product::whereCategoryId($category->id)->get();
+        $products = Product::with(['attributes', 'inners', 'advantages'])->whereCategoryId($category->id)->get();
         $materials = Material::whereCategoryId($category->id)->get();
         $addons = Addon::whereCategoryId($category->id)->get();
         $increments = [];
@@ -46,6 +46,8 @@ class SiteController extends Controller
         }
 
         // dd($increments);
+
+        // dd($products);
 
         return view('welcome', compact('category', 'managers', 'products', 'materials', 'addons', 'increments'));
     }

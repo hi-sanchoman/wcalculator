@@ -10,24 +10,23 @@
                     <a href="{{ route('products.index') }}"  class="btn btn-primary">@lang('crud.back')</a>
                 </div>
             </div>
-  <div class="content">
-              @include('stisla-templates::common.errors')
-              <div class="section-body">
-                 <div class="row">
-                     <div class="col-lg-12">
-                         <div class="card">
-                             <div class="card-body ">
-                                    {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'patch', 'files' => true]) !!}
-                                        <div class="row">
-                                            @include('products.fields')
-                                        </div>
-
-                                    {!! Form::close() !!}
+        <div class="content">
+            @include('stisla-templates::common.errors')
+            <div class="section-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body ">
+                                {!! Form::model($product, ['route' => ['products.update', $product->id], 'method' => 'patch', 'files' => true]) !!}
+                                    <div class="row">
+                                        @include('products.fields')
+                                    </div>
+                                {!! Form::close() !!}
                             </div>
                          </div>
                     </div>
                  </div>
-              </div>
-   </div>
-  </section>
+            </div>
+        </div>
+    </section>
 @endsection

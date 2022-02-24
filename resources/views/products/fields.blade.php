@@ -52,8 +52,10 @@
     {!! Form::number('price_kedr', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="clearfix"></div>
+
 <!-- Img 1 Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     @if (isset($product) && $product->img_1 != null)
         <img src="{{ asset($product->img_1) }}" style="width: 120px;">
         <br><br>
@@ -65,7 +67,7 @@
 <div class="clearfix"></div>
 
 <!-- Img 2 Field -->
-<div class="form-group col-sm-6">
+<div class="form-group col-sm-12">
     @if (isset($product) && $product->img_2 != null)
         <img src="{{ asset($product->img_2) }}" style="width: 120px;">
         <br><br>
@@ -75,6 +77,37 @@
     {!! Form::file('img_2') !!}
 </div>
 <div class="clearfix"></div>
+
+
+
+<!-- description Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('description', __('models/products.fields.description').':') !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control editor']) !!}
+</div>
+
+
+<div class="row">
+    <div class="form-group col-md-4 col-sm-12">
+        {!! Form::label('column1', __('models/products.fields.column1').':') !!}
+        {!! Form::textarea('column1', null, ['class' => 'form-control editor', 'id' => 'editor']) !!}
+    </div>
+    <div class="form-group col-md-4 col-sm-12">
+        {!! Form::label('column2', __('models/products.fields.column2').':') !!}
+        {!! Form::textarea('column2', null, ['class' => 'form-control editor']) !!}
+    </div>
+    <div class="form-group col-md-4 col-sm-12">
+        {!! Form::label('column3', __('models/products.fields.column3').':') !!}
+        {!! Form::textarea('column3', null, ['class' => 'form-control editor']) !!}
+    </div>
+</div>
+
+
+
+
+
+
+
 
 <!-- Submit Field -->
 <div class="form-group col-sm-12">

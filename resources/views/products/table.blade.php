@@ -18,10 +18,17 @@
         </thead>
         <tbody>
         @foreach($products as $product)
-            <tr>
+            <tr class="spacer">
                 <td>{{ $product->category->name }}</td>
                 <td>{{ $product->slug }}</td>
-                <td>{{ $product->name }}</td>
+                <td>
+                    <strong>{{ $product->name }}</strong>
+
+                    <br>
+                    <a href="{!! route('products.attributes.index', [$product->id]) !!}" class='btn btn-light btn-sm mb-2'>Атрибуты</a>
+                    <a href="{!! route('products.advantages.index', [$product->id]) !!}" class='btn btn-light btn-sm mb-2'>Преимущества</a>
+                    <a href="{!! route('products.inners.index', [$product->id]) !!}" class='btn btn-light btn-sm mb-2'>Составляющие</a>
+                </td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->type }}</td>
                 <td>{{ $product->width }}</td>
@@ -40,13 +47,13 @@
                 <td class=" text-center">
                     {!! Form::open(['route' => ['products.destroy', $product->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>
-                       <a href="{!! route('products.show', [$product->id]) !!}" class='btn btn-light action-btn '><i class="fa fa-eye"></i></a>
                        <a href="{!! route('products.edit', [$product->id]) !!}" class='btn btn-warning action-btn edit-btn'><i class="fa fa-edit"></i></a>
                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger action-btn delete-btn', 'onclick' => 'return confirm("'.__('crud.are_you_sure').'")']) !!}
                     </div>
                     {!! Form::close() !!}
                 </td>
             </tr>
+            <tr class="spacer" style="height: 25px;"></tr>
         @endforeach
         </tbody>
     </table>

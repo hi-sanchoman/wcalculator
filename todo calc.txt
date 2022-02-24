@@ -5,14 +5,3 @@
 	========
 	- on change ?
 	
-	
-	
-	Increment
-	=========
- 	- list
-	
-		
-	Other categories
-	================
-	- Viking
-	- Moduldom

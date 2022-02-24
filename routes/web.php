@@ -38,3 +38,18 @@ Route::resource('addons', App\Http\Controllers\AddonController::class);
 
 
 Route::resource('increments', App\Http\Controllers\IncrementController::class);
+
+
+Route::resource('products.advantages', App\Http\Controllers\ProductAdvantageController::class);
+Route::resource('products.inners', App\Http\Controllers\InnerController::class);
+Route::resource('products.attributes', App\Http\Controllers\AttributeController::class);
+
+// Route::group(['prefix' => 'products',], function() {
+// 	Route::get('/products/{id}/advantages', [App\Http\Controllers\ProductAdvantageController::class, 'index'])->name('products.advantages');
+// 	Route::get('/products/{id}/advantages/{adv}/edit', [App\Http\Controllers\ProductAdvantageController::class, 'show'])->name('products.advantages.edit');
+// 	Route::resource('productAdvantages', App\Http\Controllers\ProductAdvantageController::class);
+// });
+
+
+
+

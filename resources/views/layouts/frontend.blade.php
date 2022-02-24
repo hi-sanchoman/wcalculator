@@ -16,6 +16,7 @@
     <link href="{{ asset('/css/form-validation.css') }}" rel="stylesheet">
     <link href="{{ asset('css/gilroy.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+
 </head>
 
 <body class="bg-white" data-gr-c-s-loaded="true">
@@ -40,9 +41,10 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{{ asset('/js/jquery-3.2.1.slim.min.js') }}" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script>
-    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
-
+        window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')
     </script>
+
+
     <script src="{{ asset('/js/popper.min.js') }}"></script>
     <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/js/holder.min.js') }}"></script>
@@ -50,7 +52,18 @@
     <script>
     $(function() {
 
+        @foreach ($products as $product)
+
+            $('#bname_' + '{{ $product->slug }}').hide();
+            $('#bdescription_' + '{{ $product->slug }}').hide();
+            $('#badvantages_' + '{{ $product->slug }}').hide();
+            $('#battribues_' + '{{ $product->slug }}').hide();
+
+        @endforeach
+
+
         calc();
+
         var $product_material_id;
         var $product_name;
         var $product_price;
@@ -242,6 +255,18 @@
         $('.dop_baza_block').hide();
         $('.sostav_block.' + $product_key).show();
 
+
+        // show blocks
+
+        $('.bname_').hide();
+        $('.bdescription_').hide();
+        $('.badvantages_').hide();
+        $('.battribues_').hide();
+
+        $('#bname_' + $product_key).show();
+        $('#bdescription_' + $product_key).show();
+        $('#badvantages_' + $product_key).show();
+        $('#battribues_' + $product_key).show();
 
 
         // increments

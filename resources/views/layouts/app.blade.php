@@ -13,15 +13,26 @@
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
     @routes
-@yield('page_css')
-<!-- Template CSS -->
+    @yield('page_css')
+    
+    <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     @yield('page_css')
 
 
     @yield('css')
+
+
+    <style type="text/css">
+        td > * {
+            vertical-align : top;
+        }
+    </style>
 </head>
 <body>
 
@@ -62,6 +73,9 @@
 <script src="{{ asset('web/js/scripts.js') }}"></script>
 <script src="{{ mix('assets/js/profile.js') }}"></script>
 <script src="{{ mix('assets/js/custom/custom.js') }}"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js"></script>
+
 @yield('page_js')
 @yield('scripts')
 <script>
@@ -69,6 +83,8 @@
     let loginUrl = '{{ route('login') }}';
     // Loading button plugin (removed from BS4)
     (function ($) {
+        var editor = new FroalaEditor('.editor');
+
         $.fn.button = function (action) {
             if (action === 'loading' && this.data('loading-text')) {
                 this.data('original-text', this.html()).html(this.data('loading-text')).prop('disabled', true);
