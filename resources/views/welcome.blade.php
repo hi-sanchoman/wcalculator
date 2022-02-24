@@ -53,7 +53,7 @@
 
             @foreach ($products as $product)
             <p id="bdescription_{{ $product->slug }}" class="product_descr js_product_descr bdescription_">
-                {{ $product->description }}
+                {!! $product->description !!}
             </p>
             @endforeach
         </div>
