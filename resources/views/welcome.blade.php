@@ -52,9 +52,9 @@
             <img class="product_img js_product_img2" src="{{ asset('img/bochka22_2.jpg') }}">
 
             @foreach ($products as $product)
-            <p id="bdescription_{{ $product->slug }}" class="product_descr js_product_descr bdescription_">
+            <div id="bdescription_{{ $product->slug }}" class="product_descr js_product_descr bdescription_">
                 {!! $product->description !!}
-            </p>
+            </div>
             @endforeach
         </div>
 
